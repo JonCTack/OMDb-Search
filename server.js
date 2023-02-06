@@ -5,7 +5,7 @@ const cors = require('cors')
 
 const app = express()
 let port = 5000
-console.log(process.env.API_KEY )
+
 
 
 app.use(cors())

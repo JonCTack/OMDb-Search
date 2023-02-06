@@ -1,20 +1,28 @@
-import React from 'react'
-import { useState } from 'react'
-import axios from 'axios'
-import './index.css'
+import React from 'react';
+import { useState, useEffect, useRef } from 'react';
+import axios from 'axios';
+import './index.css';
 
-const Search = () => {
-
-    const [searchString, setSearchString] = useState('')
-    const [searchedMovie, setSearchedMovie] = useState(null)
+const Search = (props) => {
+    let {setSearchedMovie} = props
+    const [searchString, setSearchString] = useState('');
+    let isFirstRender = useRef(true)
+    useEffect(()=>{
+        if(isFirstRender.current === true){
+        isFirstRender.current = false
+    }
+    },[])
 
     const handleChange = (e) => {
-        setSearchString(e.target.value)
-    }
+        setSearchString(e.target.value);
+    };
 
     const handleSubmit = async (e) => {
+        e.preventDefault();
+        makeServerCall(e)
+    };
 
-        e.preventDefault()
+    const makeServerCall = async (e) => {
         let serverData = await axios({
             method: 'GET',
             url: `http://localhost:5000/get_movie/${searchString}`,
@@ -23,7 +31,8 @@ const Search = () => {
               }
         });
         setSearchedMovie(serverData.data)
-    };
+    }
+
 
   return (
     <section id='search-section'>
@@ -38,7 +47,7 @@ const Search = () => {
             />
         </form>
     </section>
-  )
-}
+  );
+};
 
-export default Search
+export default Search;
