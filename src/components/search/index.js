@@ -7,6 +7,7 @@ const Search = (props) => {
     let {setSearchedMovie} = props
     const [searchString, setSearchString] = useState('');
     let isFirstRender = useRef(true)
+    let searchError = useRef(false)
     useEffect(()=>{
         if(isFirstRender.current === true){
         isFirstRender.current = false
@@ -25,14 +26,18 @@ const Search = (props) => {
     const makeServerCall = async (e) => {
         let serverData = await axios({
             method: 'GET',
-            url: `http://localhost:5000/get_movie/${searchString}`,
+            url: `/get_movie/${searchString}`,
             headers: {
                 'Content-Type': null
               }
         });
-        setSearchedMovie(serverData.data)
-    }
 
+        setSearchedMovie(serverData.data)
+        if (serverData.data.Error){
+            searchError.current = true
+        } else {
+            searchError.current = false
+        }}
 
   return (
     <section id='search-section'>
@@ -47,7 +52,7 @@ const Search = (props) => {
             />
         </form>
     </section>
-  );
+  )
 };
 
 export default Search;

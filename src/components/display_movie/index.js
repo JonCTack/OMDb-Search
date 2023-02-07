@@ -1,16 +1,16 @@
 import React from 'react'
+import Ratings from '../ratings';
 import "./index.css"
 
 const DisplayMovie = (props) => {
   let {searchedMovie, movieArray, setMovieArray} = props
 
 const handleClick = () => {
-    setMovieArray([...movieArray, searchedMovie.Title])
-}
-  if (searchedMovie != null){
-    let ratingsArray = searchedMovie.Ratings.map((el, i) => {
-        return <li key={i}>{el.Source}: {el.Value}</li>
-    })
+  if(movieArray.flat().includes(searchedMovie.imdbID) === false){
+    
+    setMovieArray([...movieArray, [searchedMovie.Poster, searchedMovie.Title, searchedMovie.imdbID]])
+  }}
+  if (searchedMovie != null && !searchedMovie.Error){
     return (
         <div id='movie'>
             <h1>{searchedMovie.Title}</h1>
@@ -22,15 +22,16 @@ const handleClick = () => {
             <li>Actors: {searchedMovie.Actors} </li>
             <li>Writers: {searchedMovie.Writer}</li>
             <p>Awards: {searchedMovie.Awards}</p>
-            {ratingsArray}
+            <Ratings searchedMovie={searchedMovie}/>
         </div>
       )
-  } else {
+ }else {
     return (
-        <div>
-            Search IMDB
-        </div>
-    )
+      <div>
+          <h3>Search IMDB</h3>
+          <h6>click the posters to add to favorites to quickly reference the movie</h6>
+      </div>
+  )
   }
  
 };

@@ -24,6 +24,13 @@ div.App{
   color: white;
 }
 
+div#displayMovieDiv{
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: baseline;
+}
+
 .App-link {
   color: #61dafb;
 }
@@ -36,3 +43,4 @@ div.App{
     transform: rotate(360deg);
   }
 }
+

@@ -1,3 +1,6 @@
 li {
     list-style: none;
 }
+div#movie{
+    width: 85vw;
+}

@@ -1,7 +1,34 @@
 #favorite{
-        border-top: 4px solid slategray;
-        margin-top: 20px;
-        padding-top: 12px;
-        width: 100vw;
+        border-right: 4px solid slategray;
+        margin-top: 0vh;
+        padding-top: 10vh;
+        padding-bottom: 30vh;
+        width: 15vw;
+        height:100vh;
         background-color: #3a4150;
+}
+.fav_movie{
+        width:10vw;
+        margin: 1vw;
+}
+#fav_array{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+}
+
+#favorite h4{
+        padding: 0px;
+        margin: 0px;
+}
+#favorite p{
+        padding: 0px;
+        margin: 0px;
+        font-size: small;
+}
+
+div#favorite {
+        height: 100vh;
 }
